@@ -22,8 +22,8 @@ public class JurassicPark {
             String sql = "select breed from dinosaur " +
                     "where expected < actual " +
                     "order by breed";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if (!overpopulated.contains(rs.getString("breed"))) {
                     overpopulated.add(rs.getString("breed"));
